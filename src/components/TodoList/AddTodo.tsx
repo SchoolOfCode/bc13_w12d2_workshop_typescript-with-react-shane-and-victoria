@@ -1,15 +1,19 @@
 import { useState } from "react";
 
-export function AddTodo(props) {
+type TodoProps = {
+  addTodo: Function,
+}
+
+export function AddTodo(props: TodoProps) {
   const { addTodo } = props;
 
   const [todoTitle, setTodoTitle] = useState("");
 
-  function onChange(e) {
+  function onChange(e: any): void {
     setTodoTitle(e.target.value);
   }
 
-  function onClickAdd() {
+  function onClickAdd() : void {
     if (todoTitle.trim() === "") {
       return;
     }

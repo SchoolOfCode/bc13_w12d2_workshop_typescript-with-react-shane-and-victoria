@@ -1,8 +1,17 @@
-export function TodoTitle(props) {
+type TodoTitleProps = {
+  isEditing: boolean
+  isComplete: boolean
+  title: string
+  editedTodoTitle: string
+  setEditedTodoTitle: Function
+}
+
+
+export function TodoTitle(props: TodoTitleProps) {
   const { isEditing, isComplete, title, editedTodoTitle, setEditedTodoTitle } =
     props;
 
-  function onTodoTitleChange(e) {
+  function onTodoTitleChange(e: any) {
     const newTodoTitle = e.target.value;
     setEditedTodoTitle(newTodoTitle);
   }
