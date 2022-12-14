@@ -1,9 +1,9 @@
 type TodoButtonsProps = {
   isEditing: boolean;
   isComplete: boolean;
-  onClickToggle: Function;
-  onClickDelete: Function;
-  onClickEditOrDone: Function;
+  onClickToggle: ()=>void;
+  onClickDelete: ()=>void;
+  onClickEditOrDone: ()=>void;
 };
 
 export function TodoButtons(props: TodoButtonsProps) {
@@ -19,18 +19,18 @@ export function TodoButtons(props: TodoButtonsProps) {
   return (
     <div className="todo-buttons">
       {!isEditing && (
-        <button className="toggle-button" onClick={()=>onClickToggle}>
+        <button className="toggle-button" onClick={onClickToggle}>
           {isComplete ? "Mark Not Done" : "Mark Done"}
         </button>
       )}
 
       {!isComplete && (
-        <button className="edit-button" onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => onClickEditOrDone(e)}>
+        <button className="edit-button" onClick={onClickEditOrDone}>
           {isEditing ? "Done" : "Edit"}
         </button>
       )}
       {!isEditing && (
-        <button className="delete-button" onClick={()=>onClickDelete}>
+        <button className="delete-button" onClick={onClickDelete}>
           Delete
         </button>
       )}

@@ -3,8 +3,9 @@ import { TodoButtons } from "./TodoButtons";
 import { TodoTitle } from "./TodoTitle";
 
 type TodoProps = {
-  todo:
-  updateTodo:
+  todo: string,
+  updateTodo: (id: number, updatedTodo: string )=> type todo,
+  deleteTodo: ()=>
 }
 
 export function Todo(props: TodoProps) {
