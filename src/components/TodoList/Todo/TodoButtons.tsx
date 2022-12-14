@@ -1,6 +1,6 @@
 type TodoButtonsProps = {
   isEditing: boolean;
-  isComplete: boolean;
+  done: boolean;
   onClickToggle: ()=>void;
   onClickDelete: ()=>void;
   onClickEditOrDone: ()=>void;
@@ -9,7 +9,7 @@ type TodoButtonsProps = {
 export function TodoButtons(props: TodoButtonsProps) {
   const {
     isEditing,
-    isComplete,
+    done,
     onClickToggle,
     onClickDelete,
     onClickEditOrDone,
@@ -20,11 +20,11 @@ export function TodoButtons(props: TodoButtonsProps) {
     <div className="todo-buttons">
       {!isEditing && (
         <button className="toggle-button" onClick={onClickToggle}>
-          {isComplete ? "Mark Not Done" : "Mark Done"}
+          {done ? "Mark Not Done" : "Mark Done"}
         </button>
       )}
 
-      {!isComplete && (
+      {!done && (
         <button className="edit-button" onClick={onClickEditOrDone}>
           {isEditing ? "Done" : "Edit"}
         </button>

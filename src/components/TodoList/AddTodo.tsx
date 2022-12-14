@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 type TodoProps = {
-  addTodo: Function,
+  addTodo: (newTodoTitle: string) => void,
 }
 
 export function AddTodo(props: TodoProps) {
@@ -9,11 +9,11 @@ export function AddTodo(props: TodoProps) {
 
   const [todoTitle, setTodoTitle] = useState("");
 
-  function onChange(e: any): void {
+  function onChange(e:React.ChangeEvent<HTMLInputElement>): void {
     setTodoTitle(e.target.value);
   }
 
-  function onClickAdd() : void {
+  function onClickAdd(): void {
     if (todoTitle.trim() === "") {
       return;
     }

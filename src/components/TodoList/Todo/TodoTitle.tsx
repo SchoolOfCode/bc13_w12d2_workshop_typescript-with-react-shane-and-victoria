@@ -1,6 +1,6 @@
 type TodoTitleProps = {
   isEditing: boolean
-  isComplete: boolean
+  done: boolean
   title: string
   editedTodoTitle: string
   setEditedTodoTitle: Function
@@ -8,7 +8,7 @@ type TodoTitleProps = {
 
 
 export function TodoTitle(props: TodoTitleProps) {
-  const { isEditing, isComplete, title, editedTodoTitle, setEditedTodoTitle } =
+  const { isEditing, done, title, editedTodoTitle, setEditedTodoTitle } =
     props;
 
   function onTodoTitleChange(e: any) {
@@ -18,7 +18,7 @@ export function TodoTitle(props: TodoTitleProps) {
 
   return (
     <div className="todo-title">
-      <span>{isComplete ? `✔️` : `❌`}</span>
+      <span>{done ? `✔️` : `❌`}</span>
       {isEditing ? (
         <input
           className="edit-todo"
@@ -27,7 +27,7 @@ export function TodoTitle(props: TodoTitleProps) {
           onChange={onTodoTitleChange}
         />
       ) : (
-        <div className={`${isComplete && "todo-done"}`}>{title}</div>
+        <div className={`${done && "todo-done"}`}>{title}</div>
       )}
     </div>
   );

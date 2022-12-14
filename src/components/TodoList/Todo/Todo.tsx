@@ -2,21 +2,27 @@ import { useState } from "react";
 import { TodoButtons } from "./TodoButtons";
 import { TodoTitle } from "./TodoTitle";
 
-type TodoProps = {
-  todo: string,
-  updateTodo: (id: number, updatedTodo: string )=> type todo,
-  deleteTodo: ()=>
+type TodoStateObject = {
+  title: string,
+  done: boolean,
+  id: string
 }
+type TodoProps = {
+  todo: TodoStateObject,
+  updateTodo: (id: string, updatedTodo: TodoStateObject) => void,
+  deleteTodo: (id: string) => void
+}
+
 
 export function Todo(props: TodoProps) {
   const { todo, updateTodo, deleteTodo } = props;
-  const { title, isComplete } = todo;
+  const { title, done } = todo;
 
   const [isEditing, setIsEditing] = useState(false);
   const [editedTodoTitle, setEditedTodoTitle] = useState(title);
 
   function onClickToggle() {
-    const updatedTodo = { ...todo, isComplete: !todo.isComplete };
+    const updatedTodo: TodoStateObject = { ...todo, done: !todo.done };
     updateTodo(todo.id, updatedTodo);
   }
 
@@ -29,7 +35,7 @@ export function Todo(props: TodoProps) {
   }
 
   function onClickDone() {
-    const updatedTodo = { ...todo, title: editedTodoTitle };
+    const updatedTodo: TodoStateObject = { ...todo, title: editedTodoTitle };
     updateTodo(todo.id, updatedTodo);
     setIsEditing(false);
   }
@@ -38,13 +44,13 @@ export function Todo(props: TodoProps) {
     <div className="todo">
       <TodoTitle
         title={title}
-        isComplete={isComplete}
+        done={done}
         isEditing={isEditing}
         editedTodoTitle={editedTodoTitle}
         setEditedTodoTitle={setEditedTodoTitle}
       />
       <TodoButtons
-        isComplete={isComplete}
+        done={done}
         isEditing={isEditing}
         onClickToggle={onClickToggle}
         onClickEditOrDone={isEditing ? onClickDone : onClickEdit}
